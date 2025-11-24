@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>To-Do-List</title>
+</head>
+<body>
+    <div class="main-container">
+        <header>
+            <h1 class="title">To-Do-List</h1>
+        </header>
+        <main>
+            <div class="heading">Add Your Task Here</div>
+            <div  class="input-box">
+                <fieldset>
+                    <legend>Task:</legend><br>
+                    <label for="priority">Priority:</label>
+                    <select id="priority" name="priority">
+                        <option value="Low">Low</option>
+                        <option value="Medium">Medium</option>
+                        <option value="High">High</option>
+                    </select>
+                    <br><br>
+                    <label for="task">Task Name:</label>
+                    <input type="text" id="task" name="task">
+                    <p class="error">Please fill both the items</p>
+                    <br><br>
+                    <button type="button" class="submit-btn">Add Task</button>
+                </fieldset>
+            </div>
+            <div class="task-list-container">
+                <h2 class="your-tasks">Tasks to complete:</h2>
+                <div class="task-list"></div>
+            </div>
+        </main>
+    </div>
+</body>
+<script src="script.js"></script>
+</html>
