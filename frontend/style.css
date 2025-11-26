@@ -7,7 +7,8 @@
 .main-container {
     text-align: center;
     background-color: #84BC9C;
-    height: 100vh;
+    min-height: 100vh;
+    height: 100%;
 }
 
 header {
@@ -125,6 +126,7 @@ legend {
     height: 30px;
     background-color: #ce2f41;
     border-radius: 8px;
+    flex: 0 0 auto;
     cursor: pointer;
 }
 
