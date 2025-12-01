@@ -3,6 +3,7 @@ import express from 'express';
 import cors from 'cors';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import cookieParser from 'cookie-parser';
 import {PrismaClient} from '@prisma/client';
 
 const port = process.env.PORT || 7000;
@@ -33,8 +34,12 @@ const users = [
 const app = express();
 const prisma = new PrismaClient();
 
-app.use(cors());
+app.use(cors({
+    origin: 'http://127.0.0.1:5500',
+    credential: true
+}));
 app.use(express.json());
+app.use(cookieParser());
 
 //routesHandler
 app.use('/auth', auth)

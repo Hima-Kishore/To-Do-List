@@ -3,12 +3,15 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import {PrismaClient} from '@prisma/client';
 
-router = express.Router();
+const router = express.Router();
 const prisma = new PrismaClient();
 
 router.post('/signup', async (req, res) => {
     try {
         const { email, password, confirmPassword } = req.body;
+        if(!email || !password || !confirmPassword) return res.status(404).json("All fields are required!");
+        
+        if(password !== confirmPassword) return res.status(404).json("Passwords didn't match");
         
         const verifyMail = await prisma.user.findUnique({
             where: {
@@ -17,19 +20,31 @@ router.post('/signup', async (req, res) => {
         });
 
         if(verifyMail) return res.status(400).json("Email already exists, please login");
-        if(password !== confirmPassword) return res.status(404).json("Passwords didn't match");
 
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        await prisma.user.create({
+        const user = await prisma.user.create({
             data: {
                 email: email,
                 password: hashedPassword
             }
         });
+        const token = jwt.sign(
+            { userId: user.id }, //payload
+            process.env.JWT_SECRET, //the secret key
+            { expiresIn: '7d' } //Expiration
+        );
 
-        res.status(201).json("User Created Successfully");
-
+        const cookieOptions = {
+            httpOnly: true,
+            secure: process.env.STATE === 'production',
+            sameSite: 'strict',
+            maxAge: 7 * 24 * 60 * 60 * 1000
+        };
+        
+        res.cookie('token', token, cookieOptions);
+        
+        res.status(201).json("User succefully created");
     } catch(error) {
         res.status(504).json("Internal Server Error");
     }
@@ -54,13 +69,28 @@ router.post('/login', async(req, res) => {
         const token = jwt.sign(
             { userId: user.id }, //payload
             process.env.JWT_SECRET, //the secret key
-            { expiresIn: '4hr' } //Expiration
-        )
-        res.json({ token: token });
+            { expiresIn: '7d' } //Expiration
+        );
+
+        const cookieOptions = {
+            httpOnly: true,
+            secure: process.env.STATE === 'production',
+            sameSite: 'strict',
+            maxAge: 7 * 24 * 60 * 60 * 1000
+        };
         
+        res.cookie('token', token, cookieOptions);
+
+        res.status(201).json({ token: token });
+
     } catch (error) {
         res.status(504).json("Internal Server Error");
     }
 })
+
+router.post('/logout', (req, res) => {
+    res.clearCookie('token');
+    res.status(201).json("Logged out succesfuly");
+});
 
 export default router;
