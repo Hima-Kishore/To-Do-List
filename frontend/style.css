@@ -13,18 +13,37 @@
 
 header {
     background-color: #2CA58D;
-    padding: 10px;
+    padding: 10px 4vw;
     margin-bottom: 50px;
     font-family:"Arial, Helvetica, sans-serif";
-    font-weight: bolder;
-    font-size: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title {
+    font-size: clamp(2rem, 4vw, 4rem);
+}
+
+.logout-btn {
+    height: 2rem;
+    width: 6rem;
+    border-radius: 6px;
+    border-width: 1px;
+    background-color: #F46197;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 5px;
+    cursor: pointer;
+    box-shadow: 1px 4px 6px rgba(0,0,0,0.6);
 }
 
 .heading {
     margin: 20px;
-    font-size: 30px;
-    font-weight: bold;
+    font-size: clamp(1.2rem, 2vw, 2rem);
+    font-weight: bolder;
 }
+
 
 .input-box {
     text-align: center;
@@ -33,7 +52,8 @@ header {
 }
 
 fieldset {
-    width: 30vw;
+    width: 50vw;
+    max-width: 500px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -56,6 +76,30 @@ legend {
     padding: 0 6px 0 6px;
 }
 
+#email {
+    border-radius: 5px;
+    border: none;
+    height: 25px;
+    width: 50%;
+    padding: 0 6px 0 6px;
+}
+
+#password {
+    border-radius: 5px;
+    border: none;
+    height: 25px;
+    width: 50%;
+    padding: 0 6px 0 6px;
+}
+
+#confirmPassword {
+    border-radius: 5px;
+    border: none;
+    height: 25px;
+    width: 50%;
+    padding: 0 6px 0 6px;
+}
+
 #priority {
     border-radius: 5px;
     border: none;
@@ -69,20 +113,17 @@ legend {
 }
 
 .submit-btn {
-    margin-bottom: 20px;
+    margin-bottom: 24px;
     width: 100px;
-    height: 30px;
+    height: 36px;
     border-radius: 6px;
-    border-width: 1px;
+    border-width: 0px;
     background-color: #F46197;
     font-size: 1rem;
     font-weight: bold;
-    padding: 5px;
+    text-align: center;
+    box-shadow: -1px 3px 6px rgba(0,0,0,0.6);
     cursor: pointer;
-}
-
-.your-tasks {
-    margin: 30px;
 }
 
 .task-list-container {
@@ -92,12 +133,49 @@ legend {
     align-items: center;
 }
 
+
+.your-tasks-div {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#filter {
+    height: 1.6rem;
+    border-radius: 0.4rem;
+    cursor: pointer;
+    border-width: 1px;
+}
+
+.your-tasks {
+    margin: 30px;
+}
+
+.loader {
+    font-size: clamp(0.8rem, 2.2vw, 1.4rem);
+    color: #081c34;
+    margin: 20px auto;
+    text-align: center;
+}
+
 .task-list {
     font-family: 'Arial';
     font-size: 1.6rem;
     font-weight: 900;
     width: 100%;
-    max-width: 520px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.color-indication {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: clamp(1rem, 1.6vw, 1.4rem);
 }
 
 .red-font {
@@ -105,7 +183,7 @@ legend {
 }
 
 .yellow-font {
-    color: yellow;
+    color: #F9DC5C;
 }
 
 .blue-font {
@@ -117,8 +195,62 @@ legend {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    gap: 30px;
-    margin-bottom: 24px;
+    gap: 10px;
+    margin-bottom: 15px;
+
+    width: 90%;
+    max-width: 500px;
+    
+    height: auto;
+    min-height: 60px;
+
+    background-color: white;
+    border-radius: 8px;
+    padding: 5px 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    box-sizing: border-box;
+
+    overflow: hidden;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.task-text {
+    flex: 1;
+    min-width: 0;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    margin-right: 5px;
+    text-align: left;
+    margin: 0;
+
+    font-size: clamp(0.8rem, 2.5vw, 1.4rem); 
+    cursor: pointer;
+}
+
+.no-text {
+    font-size: clamp(0.8rem, 3vw, 1.6rem);
+    color: #B80C09;
+}
+
+.edit-btn {
+    width: 30px;
+    height: 30px;
+    background-color: #2CA58D;
+    color:white;
+    font-size: 1.6rem;
+    font-weight: 100;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.edit-btn:hover {
+    background-color: #248a75;
 }
 
 .del-btn {
@@ -126,12 +258,25 @@ legend {
     height: 30px;
     background-color: #ce2f41;
     border-radius: 8px;
-    flex: 0 0 auto;
+    /* flex: 0 0 auto; */
     cursor: pointer;
+    border: none;
+    text-align: center;
+}
+.del-btn:hover {
+    background-color: #c61a48;
+}
+
+.completed-task {
+    text-decoration: line-through;
+    opacity: 0.4;
 }
 
 
 
-
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
 
 

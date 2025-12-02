@@ -6,7 +6,7 @@ import jwt from 'jsonwebtoken';
 import cookieParser from 'cookie-parser';
 import {PrismaClient} from '@prisma/client';
 
-const port = process.env.PORT || 7000;
+const port = process.env.PORT || 8000;
 
 import auth from './routes/auth.js';
 import todos from './routes/todos.js';
@@ -35,8 +35,9 @@ const app = express();
 const prisma = new PrismaClient();
 
 app.use(cors({
-    origin: 'http://127.0.0.1:5500',
-    credential: true
+    origin: 'http://localhost:5500',
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH']
 }));
 app.use(express.json());
 app.use(cookieParser());

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css"/>
-    <title>Login</title>
+    <title>Sign-Up</title>
 </head>
 <body>
     <div class="main-container">
@@ -13,7 +13,7 @@
         </header>
 
         <main>
-            <div class="heading">Login</div>
+            <div class="heading">Sign-Up</div>
             <div class="input-box">
                 <fieldset>
                     <br>
@@ -22,11 +22,14 @@
                     <br><br>
                     <label for="password">Password</label>
                     <input type="password" id="password" name="password">
-                    <p class="error">Email and Password didn't match</p>
                     <br><br>
-                    <button type="button" class="submit-btn">LOGIN</button>
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword">
+                    <p class="error">Email already exists</p>
+                    <br><br>
+                    <button type="button" class="submit-btn">REGISTER</button>
                     <br>
-                    <p>Don't have an account? <a href="signup.html">Sign-Up</a></p>
+                    <p>Already have an account? <a href="index.html">Login</a></p>
                     <br>
                 </fieldset>
             </div>
@@ -34,5 +37,5 @@
         </main>
     </div>
 </body>
-<script src="auth.js"></script>
+<script src="signup.js"></script>
 </html>

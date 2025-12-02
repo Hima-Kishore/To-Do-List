@@ -19,7 +19,7 @@ router.post('/signup', async (req, res) => {
             }
         });
 
-        if(verifyMail) return res.status(400).json("Email already exists, please login");
+        if(verifyMail) return res.status(401).json("Email already exists, please login");
 
         const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -37,8 +37,8 @@ router.post('/signup', async (req, res) => {
 
         const cookieOptions = {
             httpOnly: true,
-            secure: process.env.STATE === 'production',
-            sameSite: 'strict',
+            secure: false,
+            sameSite: 'lax',
             maxAge: 7 * 24 * 60 * 60 * 1000
         };
         
@@ -74,8 +74,9 @@ router.post('/login', async(req, res) => {
 
         const cookieOptions = {
             httpOnly: true,
-            secure: process.env.STATE === 'production',
-            sameSite: 'strict',
+            // secure: process.env.STATE === 'production',
+            secure: false,
+            sameSite: 'lax',
             maxAge: 7 * 24 * 60 * 60 * 1000
         };
         
