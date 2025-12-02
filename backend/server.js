@@ -1,8 +1,6 @@
 import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
-import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
 import cookieParser from 'cookie-parser';
 import {PrismaClient} from '@prisma/client';
 
@@ -12,24 +10,6 @@ import auth from './routes/auth.js';
 import todos from './routes/todos.js';
 
 
-const users = [
-    {
-        'name': 'Kishore',
-        'age': 23
-    },
-    {
-        'name': 'Euru',
-        'age': 25
-    },
-    {
-        'name': 'Jaya',
-        'age': 42
-    },
-    {
-        'name': 'Ravi',
-        'age': 50
-    }
-]
 
 const app = express();
 const prisma = new PrismaClient();

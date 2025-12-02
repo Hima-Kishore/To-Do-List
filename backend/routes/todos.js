@@ -2,7 +2,7 @@ import express from 'express';
 import { PrismaClient } from '@prisma/client';
 import auth from '../middleware/auth.js';
 
-// FIX 1: Spelled 'prisma' correctly
+
 const prisma = new PrismaClient();
 const router = express.Router();
 
@@ -13,16 +13,14 @@ router.get('/', auth, async (req, res) => {
             where: {
                 userId: req.user.userId
             },
-            // Optional: Sort by newest first
             orderBy: {
                 id: 'desc' 
             }
         })
         res.json(todos);
     } catch (error) {
-        // FIX 2: Log the actual error to your VS Code terminal
+       
         console.error("GET Error:", error); 
-        // FIX 3: Changed 504 to 500 (500 = Internal Server Error, 504 = Timeout)
         res.status(500).json({ error: 'Internal Server Issue' });
     }
 })
@@ -43,7 +41,6 @@ router.post('/', auth, async (req, res) => {
         res.json(newTodo);
     } catch(error) {
         console.error("POST Error:", error);
-        // FIX 4: Fixed 'ststus' typo
         res.status(500).json({ error: "Unable to create task" });
     }
 })
@@ -59,7 +56,6 @@ router.patch('/:id', auth, async (req, res) => {
         return res.status(400).json({error: "Invalid Task ID"});
     }
     try {
-        // Check ownership logic (Optional but good)
         const existingTask = await prisma.todo.findUnique({
             where: {
                 id: id
@@ -97,7 +93,6 @@ router.patch('/:id', auth, async (req, res) => {
 router.delete('/:id', auth, async(req, res) => {
     const taskId = req.params.id;
     try {
-        // Check ownership logic (Optional but good)
         const task = await prisma.todo.findUnique({
             where: {
                 id: parseInt(taskId)

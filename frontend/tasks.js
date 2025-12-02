@@ -1,4 +1,4 @@
-// 1. Select Elements
+//  Select Elements
 let tasks = [];
 const submitBtn = document.querySelector(".submit-btn");
 const logoutBtn = document.querySelector('.logout-btn');
@@ -9,9 +9,8 @@ const priorityInput = document.querySelector('#priority');
 const errChk = document.querySelector('.error');
 const filterTask = document.querySelector('#filter');
 // const mailText = document.querySelector('.mail');
-
-
 // mail.textContent = user.email;
+
 
 filterTask.addEventListener('change', () => {
     showData();
@@ -44,7 +43,7 @@ const deleteTask = async (id) => {
             credentials: 'include'
         });
         if(response.ok) {
-            showData(); // Refresh list
+            showData(); 
         }
     } catch(error) {
         console.error("error deleting task", error);
@@ -130,7 +129,7 @@ const createTaskElement = (obj) => {
             } catch(error) {
                 console.error("Error updating task", error);
             }
-    }
+        }
     });
 
     let taskClose = document.createElement('button');
@@ -234,7 +233,7 @@ const addTask = async (taskValue, priorityValue) => {
         });
 
         if(response.ok) {
-            taskInput.value = ''; // Clear the DOM input
+            taskInput.value = ''; 
             showData();
         } else {
             console.log("Server rejected adding task");
@@ -246,7 +245,6 @@ const addTask = async (taskValue, priorityValue) => {
 
 // --- EVENT HANDLER ---
 const eventHandler = () => {
-    // Get values from DOM elements here
     const tVal = taskInput.value;
     const pVal = priorityInput.value;
 
@@ -258,7 +256,7 @@ const eventHandler = () => {
     }
 }
 
-// --- FETCH DATA (The Bouncer) ---
+// --- FETCH DATA ---
 const showData = async () => {
     try {
         loader.style.display = 'block';
@@ -293,5 +291,5 @@ const showData = async () => {
 submitBtn.addEventListener('click', eventHandler);
 taskInput.addEventListener('keydown', (e) => {if(e.key === 'Enter') eventHandler()});
 
-// Init
+
 showData();
