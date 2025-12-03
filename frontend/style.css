@@ -4,6 +4,13 @@
     color: #081c34;
 }
 
+.page-loader {
+    font-size: clamp(0.8rem, 2.2vw, 2.8rem);
+    color: #081c34;
+    margin: 20% auto;
+    text-align: center;
+}
+
 .main-container {
     text-align: center;
     background-color: #84BC9C;

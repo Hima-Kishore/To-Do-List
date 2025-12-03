@@ -1,5 +1,7 @@
 //  Select Elements
 let tasks = [];
+const pageLoader = document.querySelector(".page-loader");
+const mainContent = document.querySelector(".main-container");
 const submitBtn = document.querySelector(".submit-btn");
 const logoutBtn = document.querySelector('.logout-btn');
 const oldTasks = document.querySelector(".task-list");
@@ -268,11 +270,21 @@ const showData = async () => {
             },
             credentials: 'include'
         });
-        
-        if(!response.ok) {
-            console.log("Fetch Failed. Status:", response.status);
+
+        if(response.status === 401 || response.status === 403) {
+            window.location.href = 'index.html';
+            console.error((await response.json()).error);
             return;
         }
+        
+        if(!response.ok) {
+            // console.error((await response.json()).error);
+            throw new Error((await response.json()).error);
+            // return;
+        }
+
+        pageLoader.style.display = 'none';
+        mainContent.style.display = 'block';
 
         const priorityWeight = {'High':3, 'Medium':2, 'Low':1};
 
@@ -284,7 +296,8 @@ const showData = async () => {
         
         displayTasks();
     } catch(err) {
-        console.error("error fetching tasks", err);
+        window.location.href = 'index.html';
+        console.error("Error fetching tasks:", err.message);
     }
 }
 
