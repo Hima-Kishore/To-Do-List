@@ -22,7 +22,7 @@ filterTask.addEventListener('change', () => {
 // --- LOGOUT ---
 if (logoutBtn) {
     logoutBtn.addEventListener('click', async () => {
-        await fetch('http://localhost:8000/auth/logout', {
+        await fetch('https://to-do-api-hima.onrender.com/auth/logout', {
             method: 'POST',
             credentials: 'include'
         });
@@ -40,7 +40,7 @@ const setColor = (obj, newTask) => {
 // --- DELETE TASK ---
 const deleteTask = async (id) => {
     try {
-        const response = await fetch(`http://localhost:8000/todos/${id}`, {
+        const response = await fetch(`https://to-do-api-hima.onrender.com/todos/${id}`, {
             method: 'DELETE',
             credentials: 'include'
         });
@@ -58,7 +58,7 @@ const deleteTask = async (id) => {
 //         const newStatus = newTask.classList.contains('completed-task');
 
 //         try {
-//             await fetch(`http://localhost:8000/todos/${obj.id}`, {
+//             await fetch(`https://to-do-api-hima.onrender.com/todos/${obj.id}`, {
 //                 method: 'PATCH',
 //                 headers: {'content-Type': 'application/json'},
 //                 body: JSON.stringify({
@@ -78,7 +78,7 @@ const deleteTask = async (id) => {
 
 //     if(newText && newText !== obj.task) {
 //         try {
-//             const response = await fetch(`http://localhost:8000/todos/${obj.id}`, {
+//             const response = await fetch(`https://to-do-api-hima.onrender.com/todos/${obj.id}`, {
 //                 method: 'PATCH',
 //                 headers: {'content-Type': 'application/json'},
 //                 body: JSON.stringify({
@@ -115,7 +115,7 @@ const createTaskElement = (obj) => {
 
         if(newText && newText !== obj.task) {
             try {
-                const response = await fetch(`http://localhost:8000/todos/${obj.id}`, {
+                const response = await fetch(`https://to-do-api-hima.onrender.com/todos/${obj.id}`, {
                     method: 'PATCH',
                     headers: {'content-Type': 'application/json'},
                     body: JSON.stringify({
@@ -156,7 +156,7 @@ const createTaskElement = (obj) => {
         const newStatus = newTask.classList.contains('completed-task');
 
         try {
-            await fetch(`http://localhost:8000/todos/${obj.id}`, {
+            await fetch(`https://to-do-api-hima.onrender.com/todos/${obj.id}`, {
                 method: 'PATCH',
                 headers: {'content-Type': 'application/json'},
                 body: JSON.stringify({
@@ -222,7 +222,7 @@ const addTask = async (taskValue, priorityValue) => {
     errChk.style.display = "none";
     try {
         
-        const response = await fetch('http://localhost:8000/todos', {
+        const response = await fetch('https://to-do-api-hima.onrender.com/todos', {
             method: 'POST',
             
             headers: { 'Content-Type': 'application/json' },
@@ -263,7 +263,7 @@ const showData = async () => {
     try {
         loader.style.display = 'block';
 
-        const response = await fetch('http://localhost:8000/todos', {
+        const response = await fetch('https://to-do-api-hima.onrender.com/todos', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
