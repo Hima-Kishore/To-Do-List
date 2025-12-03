@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>To-Do-List</title>
+</head>
+<body>
+    <div class="page-loader" id="pageLoader" style="display: block;">Fetching details...</div>
+    <div class="main-container" style="display: none;">
+        <header>
+            <!-- <p class="mail">user.mail</p> -->
+            <h1 class="title">To-Do-List</h1>
+            <button class="logout-btn">LogOut</button>
+        </header>
+        <main>
+            <div class="heading">Add Your Task Here</div>
+            <div  class="input-box">
+                <fieldset>
+                    <legend>Task:</legend><br>
+                    <label for="priority">Priority:</label>
+                    <select id="priority" name="priority">
+                        <option value="Low">Low</option>
+                        <option value="Medium">Medium</option>
+                        <option value="High">High</option>
+                    </select>
+                    <br><br>
+                    <label for="task">Task Name:</label>
+                    <input type="text" id="task" name="task">
+                    <p class="error">Please fill both the items</p>
+                    <br><br>
+                    <button type="button" class="submit-btn">Add Task</button>
+                </fieldset>
+            </div>
+            <div class="task-list-container">
+                <div class="your-tasks-div">
+                    <h2 class="your-tasks">Tasks to complete:</h2>
+                    <label for="filter">Filter:</label>
+                    <select id="filter" name="filter">
+                        <option value="All">All</option>
+                        <option value="Pending">Pending</option>
+                        <option value="Completed">Completed</option>
+                    </select>
+                </div>
+                <div class="color-indication">
+                    <h2 class="blue-font">Low</h2>
+                    <h2 class="yellow-font">Medium</h2>
+                    <h2 class="red-font">High</h2>
+                </div>
+                <div class="loader" id="loader" style="display: none;">Loading tasks...</div>
+                <div class="task-list"></div>
+            </div>
+        </main>
+    </div>
+</body>
+<script src="tasks.js"></script>
+</html>
