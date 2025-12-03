@@ -265,7 +265,7 @@ legend {
     height: 30px;
     background-color: #ce2f41;
     border-radius: 8px;
-    /* flex: 0 0 auto; */
+    flex: 0 0 auto;
     cursor: pointer;
     border: none;
     text-align: center;
