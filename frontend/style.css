@@ -60,6 +60,7 @@ header {
 
 fieldset {
     width: 50vw;
+    min-width: 300px;
     max-width: 500px;
     display: flex;
     flex-direction: column;
