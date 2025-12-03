@@ -32,7 +32,7 @@ button.addEventListener('click', async () => {
         if(response.ok) {
             window.location.href = "tasks.html";
         } else {
-            errorText.textContent = data.error || "Login failed";
+            errorText.textContent = data.error || "Server Error";
             errorText.style.display = 'block';
         }
     } catch (error) {
