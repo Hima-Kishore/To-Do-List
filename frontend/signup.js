@@ -23,7 +23,7 @@ button.addEventListener('click', async () => {
 
     try {
         loader.style.display = 'block';
-        const response = await fetch('https://to-do-api-hima.onrender.com/auth/signup', 
+        const response = await fetch('/api/auth/signup', 
             {
                 method: 'POST',
                 headers: {

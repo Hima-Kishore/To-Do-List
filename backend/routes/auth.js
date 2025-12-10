@@ -38,7 +38,7 @@ router.post('/signup', async (req, res) => {
         const cookieOptions = {
             httpOnly: true,
             secure: process.env.STATE === 'production',
-            sameSite: process.env.STATE === 'production' ? 'none' : 'lax',
+            sameSite: 'lax',
             maxAge: 7 * 24 * 60 * 60 * 1000
         };
         
@@ -75,7 +75,7 @@ router.post('/login', async(req, res) => {
         const cookieOptions = {
             httpOnly: true,
             secure: process.env.STATE === 'production',
-            sameSite: process.env.STATE === 'production' ? 'none' : 'lax',
+            sameSite: 'lax',
             maxAge: 7 * 24 * 60 * 60 * 1000
         };
         
