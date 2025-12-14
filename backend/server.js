@@ -16,7 +16,7 @@ const prisma = new PrismaClient();
 
 app.use(cors({
     origin: [
-        'http://localhost:5500', 
+        'http://localhost:8000', 
         'http://127.0.0.1:5500',
         'https://to-do-list-nu-puce.vercel.app',
     ],
