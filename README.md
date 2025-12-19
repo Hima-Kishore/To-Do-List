@@ -1,32 +1,118 @@
-# 📝 Smart To-Do List
+# 🚀 TaskFlow: Full-Stack Task Management System
 
-A prioritized Task Management application built with vanilla JavaScript. 
-This project demonstrates DOM manipulation, Event Handling, and Local Storage persistence.
 
-**Live Demo:** [Click here to view the App](https://hima-kishore.github.io/To-Do-List/)
+> **A secure, scalable, and responsive CRUD application engineered to demonstrate the complete software development lifecycle—from database schema design to cloud deployment.**
 
-## 🚀 Features
+### 🔗 **[Live Demo](https://todo-app-alpha.vercel.app)**
+*(Note: Replace the link above with your actual Vercel URL)*
 
-* **Task Creation:** Users can add tasks with specific details.
-* **Priority Logic:** Assign priority levels (High, Medium, Low).
-* **Smart Sorting:** Tasks are automatically sorted by importance (High priority first).
-* **Data Persistence:** Tasks are saved to the browser's Local Storage, so data is not lost on refresh.
-* **Dynamic UI:** Color-coded tasks based on priority level.
+---
+
+## 📖 Overview
+
+**TaskFlow** is more than just a to-do list; it is a full-stack architectural demonstration. It allows users to securely register, manage tasks with priority levels, and persist data across devices.
+
+Unlike typical tutorials, this project solves real-world engineering challenges, including **Cross-Site Request Forgery (CSRF) protection**, **Mobile/Safari Intelligent Tracking Prevention (ITP)**, and **Database Object-Relational Mapping (ORM)** using Prisma.
+
+---
+
+## ✨ Key Features
+
+### 🛡️ **Security & Authentication**
+* **JWT Authentication:** Secure stateless authentication using JSON Web Tokens.
+* **Password Hashing:** User passwords are encrypted using `bcrypt` before storage.
+* **Auth Guards:** Frontend routing logic prevents unauthorized access to private pages.
+* **Mobile-Compatible Security:** Implemented header-based authentication (`Authorization: Bearer`) to bypass aggressive third-party cookie blocking on iOS/Safari (ITP).
+
+### ⚡ **Frontend Experience**
+* **Vanilla JavaScript SPA:** Built without frameworks to demonstrate mastery of the DOM, Event Loop, and Asynchronous JavaScript.
+* **Optimistic UI:** The interface updates instantly for a seamless user experience while data syncs in the background.
+* **Responsive Design:** Fully optimized for Mobile, Tablet, and Desktop views.
+
+### 🏗️ **Backend Architecture**
+* **MVC Pattern:** Codebase refactored into **Models, Views (JSON), and Controllers** for maintainability and scalability.
+* **RESTful API:** Clean API endpoints following standard HTTP methods (GET, POST, PUT, DELETE).
+* **Prisma ORM:** Type-safe database interactions with PostgreSQL.
+
+---
 
 ## 🛠️ Tech Stack
 
-* **HTML5:** Semantic structure and Forms.
-* **CSS3:** Flexbox layout and responsive styling.
-* **JavaScript (ES6+):** Arrow functions, Array methods (`sort`, `splice`, `filter`), and JSON parsing.
+| Component | Technology | Usage |
+| :--- | :--- | :--- |
+| **Frontend** | ![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-yellow) ![HTML5](https://img.shields.io/badge/HTML5-Semantic-orange) ![CSS3](https://img.shields.io/badge/CSS3-Flexbox-blue) | Dynamic UI, State Management, Fetch API |
+| **Backend** | ![Node.js](https://img.shields.io/badge/Node.js-Runtime-green) ![Express](https://img.shields.io/badge/Express.js-Framework-white) | REST API, Middleware, Routing |
+| **Database** | ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Relational_DB-blue) ![Prisma](https://img.shields.io/badge/Prisma-ORM-black) | Data Persistence, Schema Migrations |
+| **DevOps** | ![Vercel](https://img.shields.io/badge/Vercel-Frontend_Hosting-black) ![Render](https://img.shields.io/badge/Render-Backend_Hosting-black) ![Neon](https://img.shields.io/badge/Neon-Cloud_DB-green) | CI/CD, Production Deployment |
 
-## 💡 Lessons Learned
+---
 
-This project focused on strengthening core web fundamentals:
-1.  **DOM Manipulation:** Creating and removing elements dynamically without page reloads.
-2.  **State Management:** Using an array of objects as the "Single Source of Truth."
-3.  **Algorithm:** Implementing a weighted sort algorithm to order tasks by non-numeric priority values.
+## ⚙️ Architecture & Workflow
 
-## 🔮 Future Improvements
+The application uses a decoupled architecture:
+1.  **Client:** The Vercel-hosted frontend sends HTTP requests (with Authorization Headers).
+2.  **Server:** The Render-hosted Express API validates the token and processes the request.
+3.  **Controller:** Business logic (in `controllers/`) determines the action.
+4.  **Database:** Prisma translates the request into SQL and queries the Neon PostgreSQL DB.
 
-* [ ] Add "Edit Task" functionality.
-* [ ] Connect to a Node.js/MongoDB backend for cross-device syncing.
+---
+
+## 🚀 Getting Started (Run Locally)
+
+Follow these steps to set up the project on your local machine.
+
+### Prerequisites
+* Node.js (v18+)
+* Git
+
+### 1. Clone the Repository
+```bash
+`git clone [https://github.com/HimaKishore/todo-app.git](https://github.com/HimaKishore/todo-app.git)
+`cd todo-app
+```
+
+
+### 2. Backend Setup
+
+## Navigate to the backend folder and install dependencies.
+```bash
+`cd backend
+`npm install
+```
+
+## Configure Environment Variables: Create a *.env* file in the *backend/* root and add your credentials:
+```bash
+`DATABASE_URL="your_neon_postgres_connection_string"
+`JWT_SECRET="your_secret_key"
+`PORT=8000
+```
+
+## Initialize Database: Run the Prisma generator and start the server:
+```bash
+`npx prisma generate
+`npm run dev
+```
+
+
+### 3. Frontend Setup
+* Open frontend/index.html with Live Server (VS Code Extension) or simply drag the file into your browser.
+
+---
+
+### 🧠 Engineering Challenges & Solutions
+
+1. ## The Cross-Site Cookie Problem (CORS & ITP)
+* **Challenge:** When deploying Frontend (Vercel) and Backend (Render) on different domains, mobile browsers (especially Safari on iPhone) blocked HttpOnly cookies due to Intelligent Tracking Prevention (ITP).
+
+* **Solution:** I implemented a hybrid authentication strategy. While the system supports cookies, I migrated to Header-Based Authentication (Authorization: Bearer <token>) for mobile compatibility, ensuring the app works flawlessly on all devices.
+
+2. ## Scalable Code Structure
+* **Challenge:** As the application grew, the routes file became cluttered with logic.
+
+* **Solution:** Refactored the backend into the MVC (Model-View-Controller) pattern. Route files now only handle routing, while controllers/ handle business logic. This makes the codebase modular and testable.
+
+### 🔮 Future Improvements
+
+* [ ] **Drag & Drop:** Implement a drag-and-drop interface for reordering tasks.
+* [ ] **Category Tags:** Allow users to filter tasks by custom tags (Work, Personal).
+* [ ] **Dark Mode:** System-preference aware dark theme.
