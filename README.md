@@ -3,8 +3,7 @@
 
 > **A secure, scalable, and responsive CRUD application engineered to demonstrate the complete software development lifecycle—from database schema design to cloud deployment.**
 
-### 🔗 **[Live Demo](https://todo-app-alpha.vercel.app)**
-*(Note: Replace the link above with your actual Vercel URL)*
+### 🔗 **[Live Demo](https://to-do-list-nu-puce.vercel.app/)**
 
 ---
 
@@ -22,7 +21,7 @@ Unlike typical tutorials, this project solves real-world engineering challenges,
 * **JWT Authentication:** Secure stateless authentication using JSON Web Tokens.
 * **Password Hashing:** User passwords are encrypted using `bcrypt` before storage.
 * **Auth Guards:** Frontend routing logic prevents unauthorized access to private pages.
-* **Mobile-Compatible Security:** Implemented header-based authentication (`Authorization: Bearer`) to bypass aggressive third-party cookie blocking on iOS/Safari (ITP).
+* **Mobile-Compatible Security:** Implemented a **Reverse Proxy** on the frontend to unify domains. This allows secure tokens to function correctly on iOS/Safari by bypassing third-party cookie restrictions (ITP).
 
 ### ⚡ **Frontend Experience**
 * **Vanilla JavaScript SPA:** Built without frameworks to demonstrate mastery of the DOM, Event Loop, and Asynchronous JavaScript.
@@ -50,7 +49,7 @@ Unlike typical tutorials, this project solves real-world engineering challenges,
 ## ⚙️ Architecture & Workflow
 
 The application uses a decoupled architecture:
-1.  **Client:** The Vercel-hosted frontend sends HTTP requests (with Authorization Headers).
+1.  **Client:** The Vercel-hosted frontend sends HTTP requests using secure tokens.
 2.  **Server:** The Render-hosted Express API validates the token and processes the request.
 3.  **Controller:** Business logic (in `controllers/`) determines the action.
 4.  **Database:** Prisma translates the request into SQL and queries the Neon PostgreSQL DB.
@@ -67,30 +66,30 @@ Follow these steps to set up the project on your local machine.
 
 ### 1. Clone the Repository
 ```bash
-`git clone [https://github.com/HimaKishore/todo-app.git](https://github.com/HimaKishore/todo-app.git)
-`cd todo-app
+git clone https://github.com/Hima-Kishore/To-Do-List.git
+cd todo-app
 ```
 
 
 ### 2. Backend Setup
 
-## Navigate to the backend folder and install dependencies.
+**Navigate to the backend folder and install dependencies.**
 ```bash
-`cd backend
-`npm install
+cd backend
+npm install
 ```
 
-## Configure Environment Variables: Create a *.env* file in the *backend/* root and add your credentials:
+**Configure Environment Variables: Create a *.env* file in the *backend/* root and add your credentials:**
 ```bash
-`DATABASE_URL="your_neon_postgres_connection_string"
-`JWT_SECRET="your_secret_key"
-`PORT=8000
+DATABASE_URL="your_neon_postgres_connection_string"
+JWT_SECRET="your_secret_key"
+PORT=8000
 ```
 
-## Initialize Database: Run the Prisma generator and start the server:
+**Initialize Database: Run the Prisma generator and start the server:**
 ```bash
-`npx prisma generate
-`npm run dev
+npx prisma generate
+npm run dev
 ```
 
 
@@ -99,20 +98,30 @@ Follow these steps to set up the project on your local machine.
 
 ---
 
-### 🧠 Engineering Challenges & Solutions
+## 🧠 Engineering Challenges & Solutions
 
-1. ## The Cross-Site Cookie Problem (CORS & ITP)
+1. ### The Cross-Site Cookie Problem (CORS & ITP)
 * **Challenge:** When deploying Frontend (Vercel) and Backend (Render) on different domains, mobile browsers (especially Safari on iPhone) blocked HttpOnly cookies due to Intelligent Tracking Prevention (ITP).
 
-* **Solution:** I implemented a hybrid authentication strategy. While the system supports cookies, I migrated to Header-Based Authentication (Authorization: Bearer <token>) for mobile compatibility, ensuring the app works flawlessly on all devices.
+* **Solution:** I implemented a Reverse Proxy mechanism. This routes backend requests through the frontend domain, making them appear as "same-site" requests. This bypasses ITP restrictions and ensures stable token persistence across all devices.
 
-2. ## Scalable Code Structure
+2. ### Scalable Code Structure
 * **Challenge:** As the application grew, the routes file became cluttered with logic.
 
 * **Solution:** Refactored the backend into the MVC (Model-View-Controller) pattern. Route files now only handle routing, while controllers/ handle business logic. This makes the codebase modular and testable.
 
-### 🔮 Future Improvements
+---
+
+## 🔮 Future Improvements
 
 * [ ] **Drag & Drop:** Implement a drag-and-drop interface for reordering tasks.
 * [ ] **Category Tags:** Allow users to filter tasks by custom tags (Work, Personal).
 * [ ] **Dark Mode:** System-preference aware dark theme.
+
+---
+
+## 📬 Contact
+
+**Hima Kishore** Full Stack Developer [LinkedIn Profile](https://www.linkedin.com/in/bukya-hima-kishore) | [GitHub Profile](https://github.com/Hima-Kishore)
+
+**If you liked this project, please give it a ⭐ on GitHub!**
