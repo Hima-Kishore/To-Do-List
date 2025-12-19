@@ -8,32 +8,15 @@ const prisma = new PrismaClient();
 const router = express.Router();
 
 // GET TASKS
-router.get('/', auth, async (req, res) => {
-    
-})
+router.get('/', auth, getTasks);
 
 // CREATE TASK
-router.post('/', auth, async (req, res) => {
-    
-})
+router.post('/', auth, createTask);
 
 //PATCH TASK
-router.patch('/:id', auth, async (req, res) => {
-    const taskId = req.params.id;
-    const {task, priority, isCompleted} = req.body;
-
-    const id=parseInt(taskId);
-
-    if(isNaN(id)) {
-        return res.status(400).json({error: "Invalid Task ID"});
-    }
-    
-})
+router.patch('/:id', auth, updateTask);
 
 // DELETE TASK
-router.delete('/:id', auth, async(req, res) => {
-    const taskId = req.params.id;
-    
-})
+router.delete('/:id', auth, deleteTask);
 
 export default router;
