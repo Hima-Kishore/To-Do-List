@@ -39,6 +39,8 @@ export const createTask = async (req, res) => {
 }
 
 export const updateTask = async (req, res) => {
+    const id = parseInt(req.params.id);
+    const { task, priority, isCompleted } = req.body;
     try {
         const existingTask = await prisma.todo.findUnique({
             where: {
@@ -74,6 +76,7 @@ export const updateTask = async (req, res) => {
 }
 
 export const deleteTask = async (req, res) => {
+    const taskId = req.params.id;
     try {
         const task = await prisma.todo.findUnique({
             where: {
