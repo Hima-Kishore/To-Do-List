@@ -7,7 +7,10 @@
     <title>To-Do-List</title>
 </head>
 <body>
-    <div class="page-loader" id="pageLoader" style="display: block;">Fetching details...</div>
+    <div class="page-loader" id="pageLoader">
+        <div class="spinner-task"></div>
+        Fetching details...
+    </div>
     <div class="main-container" style="display: none;">
         <header>
             <!-- <p class="mail">user.mail</p> -->
@@ -48,7 +51,10 @@
                     <h2 class="yellow-font">Medium</h2>
                     <h2 class="red-font">High</h2>
                 </div>
-                <div class="loader" id="loader" style="display: none;">Loading tasks...</div>
+                <div class="loader" id="loader">
+                    <div class="spinner"></div>
+                    Loading tasks...
+                </div>
                 <div class="task-list"></div>
             </div>
         </main>

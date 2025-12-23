@@ -14,7 +14,7 @@ button.addEventListener('click', async () => {
     }
 
     try {
-        loader.style.display = 'block';
+        loader.style.display = 'flex';
 
         const response = await fetch('/api/auth/login', 
             {
