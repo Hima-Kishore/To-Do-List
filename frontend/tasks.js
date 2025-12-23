@@ -261,7 +261,7 @@ const eventHandler = () => {
 // --- FETCH DATA ---
 const showData = async () => {
     try {
-        loader.style.display = 'block';
+        loader.style.display = 'flex';
 
         const response = await fetch('/api/todos', {
             method: 'GET',
