@@ -148,6 +148,16 @@ legend {
     cursor: pointer;
 }
 
+.note {
+    color: rgb(125, 121, 121);
+    text-align: center;
+    font-size: 1rem;
+    text-decoration: underline;
+    position: fixed;
+    bottom: 60px;
+    width: 100%;
+}
+
 .task-list-container {
     display:flex;
     flex-direction: column;
